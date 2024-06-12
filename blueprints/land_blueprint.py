@@ -64,3 +64,13 @@ def calculate_area(id):
     "id": land.id,
     "area": land.width * land.length
   })
+
+@land_bp.route("/price/<id>", methods=["GET"])
+def calculate_price(id):
+  land = Land.objects(id=id).first()
+  if not land:
+    raise DoesNotExist("Land does not exist")
+  return jsonify({
+    "id": land.id,
+    "price": (land.width * land.length) * land.local_price_per_area
+  })
