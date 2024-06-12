@@ -54,3 +54,13 @@ def delete_land(id):
     raise DoesNotExist("Land does not exist")
   land.delete()
   return jsonify({"message": "Deleted land with id: " + id})
+
+@land_bp.route("/area/<id>", methods=["GET"])
+def calculate_area(id):
+  land = Land.objects(id=id).first()
+  if not land:
+    raise DoesNotExist("Land does not exist")
+  return jsonify({
+    "id": land.id,
+    "area": land.width * land.length
+  })
