@@ -1,9 +1,10 @@
-from mongoengine import Document, FloatField
+from mongoengine import Document, FloatField, StringField
 
 class Land(Document):
   width = FloatField(required=True) # Panjang
-  height = FloatField(required=True) # Lebar
+  length = FloatField(required=True) # Lebar
   local_price_per_area = FloatField(required=True) #
   tax_per_area = FloatField(required=True) # 
+  city = StringField(required=True)
    
 meta = {"collection" : "Lands"}
