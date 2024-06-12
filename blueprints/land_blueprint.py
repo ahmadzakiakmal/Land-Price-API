@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, g
 from werkzeug.exceptions import BadRequest, NotFound, Conflict, Unauthorized
-# from mongoengine.errors import DoesNotExist
+from mongoengine.errors import DoesNotExist
 from models.land import Land
 
 land_bp = Blueprint("land_blueprint", __name__)
@@ -47,4 +47,10 @@ def edit_land(id):
   land.save()
   return jsonify(land)
   
-  
+@land_bp.route("<id>", methods=["DELETE"])
+def delete_land(id):
+  land = Land.objects(id=id).first()
+  if not land:
+    raise DoesNotExist("Land does not exist")
+  land.delete()
+  return jsonify({"message": "Deleted land with id: " + id})
