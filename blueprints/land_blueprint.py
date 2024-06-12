@@ -30,4 +30,21 @@ def add_land():
     "id": land.id
   })
   
+@land_bp.route("/<id>", methods=["PUT"])
+def edit_land(id):
+  body = request.get_json()
+  land = Land.objects(id=id).first()
+  if body.get("city"):
+    land.city = body["city"]
+  if body.get("length"):
+    land.length = body["length"]
+  if body.get("width"):
+    land.width = body["width"]
+  if body.get("local_price_per_area"):
+    land.local_pricec_per_area = body["local_price_per_area"]
+  if body.get("tax_per_area"):
+    land.tax_per_area = body["tax_per_area"]
+  land.save()
+  return jsonify(land)
+  
   
