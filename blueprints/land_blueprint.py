@@ -74,3 +74,13 @@ def calculate_price(id):
     "id": land.id,
     "price": (land.width * land.length) * land.local_price_per_area
   })
+  
+@land_bp.route("/tax/<id>", methods=["GET"])
+def calculate_tax(id):
+  land = Land.objects(id=id).first()
+  if not land:
+    raise DoesNotExist("Land does not exist")
+  return jsonify({
+    "id": land.id,
+    "tax": ((land.width * land.length) * land.local_price_per_area) * .2
+  })
