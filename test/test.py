@@ -65,7 +65,7 @@ def test_land_api(data):
     land_data = read_response.json()
     expected_land_area = float(data["expected_land_area"])
     assert land_data["area"] == expected_land_area
-    print(f"{magenta}   {{Expected Luas Tanah: {float(expected_land_area)}, Actual Luas Tanah: {land_data["area"]}}} {end_color}")
+    print(f"{magenta}   {{Expected Luas Tanah: {float(expected_land_area)}, Actual Luas Tanah: {land_data['area']}}} {end_color}")
     print(f"{green} - Passed Calculate Luas Tanah: ID {land_id}{end_color}\n")
 
     # 4. Calculate harga tanah semuanya
@@ -75,7 +75,7 @@ def test_land_api(data):
     land_data = read_response.json()
     expected_land_area_price = float(data["expected_land_area_price"])
     assert land_data["price"] == expected_land_area_price
-    print(f"{magenta}   {{Expected Harga Tanah Keseluruhan: {float(expected_land_area_price)}, Actual Harga Tanah Keseluruhan: {land_data["price"]}}} {end_color}")
+    print(f"{magenta}   {{Expected Harga Tanah Keseluruhan: {float(expected_land_area_price)}, Actual Harga Tanah Keseluruhan: {land_data['price']}}} {end_color}")
     print(f"{green} - Passed Calculate Harga Tanah: ID {land_id}{end_color}\n")
 
     # 5. Calculate PBB (Pajak Bumi Bangunan)
@@ -85,7 +85,7 @@ def test_land_api(data):
     land_data = read_response.json()
     expected_land_tax = float(data["expected_land_tax"])
     assert land_data["tax"] == expected_land_tax
-    print(f"{magenta}   {{Expected Pajak Tanah: {expected_land_tax}, Actual Pajak Tanah: {land_data["tax"]}}} {end_color}")
+    print(f"{magenta}   {{Expected Pajak Tanah: {expected_land_tax}, Actual Pajak Tanah: {land_data['tax']}}} {end_color}")
     print(f"{green} - Passed Calculate PBB: ID {land_id}{end_color}\n")
 
     # 6. Update data
