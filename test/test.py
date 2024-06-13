@@ -114,5 +114,14 @@ def test_land_api(data):
     delete_response = requests.delete(f"{API_URL}/land/{land_id}")
     assert delete_response.status_code == 200
     print(f"{magenta}   {{Expected StatusCode: 200, Actual StatusCode: {delete_response.status_code}}} {end_color}")
-    print(f"{green} - Passed Delete Data: ID {land_id}{end_color}")
+    print(f"{green} - Passed Delete Data: ID {land_id}{end_color}\n")
+
+    #9. Read Data
+    read_response = requests.get(f"{API_URL}/land/{land_id}")
+    assert read_response.status_code == 200
+    print(f"{magenta}   {{Expected StatusCode: 200, Actual StatusCode: {read_response.status_code}}} {end_color}")
+    land_data = read_response.json()
+    assert land_data == None
+    print(f"{magenta}   {{Expected Land Data: None, Actual Land Data: {land_data}}} {end_color}")
+    print(f"{green} - Passed Read Data: null{end_color}")
 
