@@ -6,9 +6,6 @@ from test.conftest import read_csv
 
 API_URL = "http://localhost:5000"
 
-
-    
-
 @pytest.mark.parametrize("data", read_csv('test_values.csv'))
 def test_land_api(data):
     description_color = "\033[96m"
@@ -16,8 +13,6 @@ def test_land_api(data):
     green = "\033[92m"
     magenta = "\033[95m"
     print(f"""
-    
-
     {description_color}==================================
     Daerah : {data['city']}
     Panjang Tanah : {data['length']}
@@ -25,9 +20,9 @@ def test_land_api(data):
     Harga Tanah per Meter Persegi : {data['local_price_per_area']}
     Pajak Tanah per Meter Persegi : {data['tax_per_area']}
     ==================================={end_color}
-    
     """)
-        # 1. Create data
+
+    # 1. Create data
     create_response = requests.post(f"{API_URL}/land", json={
         "city": data["city"],
         "width": int(data["width"]),
@@ -82,6 +77,7 @@ def test_land_api(data):
     print(f"{magenta}   {{Expected StatusCode: 200, Actual StatusCode: {read_response.status_code}}} {end_color}")
     land_data = read_response.json()
     expected_land_tax = float(data["expected_land_tax"])
+    print(f"DEBUG: Expected Pajak Tanah: {expected_land_tax}, Actual Pajak Tanah: {land_data['tax']}")
     assert land_data["tax"] == expected_land_tax
     print(f"{magenta}   {{Expected Pajak Tanah: {expected_land_tax}, Actual Pajak Tanah: {land_data['tax']}}} {end_color}")
     print(f"{green} - Passed Calculate PBB: ID {land_id}{end_color}\n")
@@ -113,4 +109,3 @@ def test_land_api(data):
     assert delete_response.status_code == 200
     print(f"{magenta}   {{Expected StatusCode: 200, Actual StatusCode: {delete_response.status_code}}} {end_color}")
     print(f"{green} - Passed Delete Data: ID {land_id}{end_color}")
-
