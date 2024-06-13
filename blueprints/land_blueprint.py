@@ -82,5 +82,5 @@ def calculate_tax(id):
     raise DoesNotExist("Land does not exist")
   return jsonify({
     "id": land.id,
-    "tax": ((land.width * land.length) * land.local_price_per_area) * .2
+    "tax": ((land.width * land.length) * land.tax_per_area) * .2 * .005
   })
