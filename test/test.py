@@ -1,6 +1,4 @@
-import pytest
-import requests
-import csv
+
 
 from test.conftest import read_csv
 
