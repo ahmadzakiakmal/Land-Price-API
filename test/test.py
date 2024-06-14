@@ -1,5 +1,5 @@
-
-
+import pytest
+import requests
 from test.conftest import read_csv
 
 API_URL = "http://localhost:5001"
